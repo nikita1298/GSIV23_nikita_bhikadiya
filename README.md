@@ -1,3 +1,23 @@
+Steps to setup and run code
+
+1.Please rename .env.example to .env
+2.Then add your api_key and token values
+
+
+npm i
+npm start
+
+List elements from the challenge that you think you have done well, and 
+that exemplify your proficiency.
+- Component reusability
+- Dynamic Navbar component
+- Scope for error logging
+
+
+List elements from the challenge that you think you have done well, and 
+that exemplify your proficiency.
+- jest testing 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
