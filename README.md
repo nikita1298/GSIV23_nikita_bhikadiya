@@ -1,6 +1,7 @@
 Steps to setup and run code
 
 1.Please rename .env.example to .env
+
 2.Then add your api_key and token values
 
 
