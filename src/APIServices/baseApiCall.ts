@@ -4,6 +4,7 @@
 import { useNavigate } from "react-router";
 import { dispatch } from "../redux";
 import axios from "./axiosConfig";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 
 export const METHOD = {
   POST: "post",
@@ -13,13 +14,18 @@ export const METHOD = {
   PATCH: "patch",
 };
 
+interface DyanamicConfig extends AxiosRequestConfig {
+  showToast:boolean
+}
+
+
 export const apiCall = (
   endpoint: string,
   params = {},
   onSuccess: Function,
   onFailure: Function,
   method = METHOD.GET,
-  DyanamicConfig: any
+  DyanamicConfig: DyanamicConfig
 ) => {
   const request = (): Promise<any> => {
     switch (method) {

@@ -14,6 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { dispatch } from "../redux";
 import { searchMovieListInit, setSearch } from "../redux/action";
 
+export interface NavbarProps {
+  search: boolean;
+}
+
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -55,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const Navbar = ({search}:any) => {
+export const Navbar = ({ search }: NavbarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
@@ -148,17 +152,20 @@ export const Navbar = ({search}:any) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" color="default">
         <Toolbar>
-          {search ?
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={(e) => setText(e.target.value)}
-            />
-          </Search>:"Movie Detail"}
+          {search ? (
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => setText(e.target.value)}
+              />
+            </Search>
+          ) : (
+            "Movie Detail"
+          )}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton

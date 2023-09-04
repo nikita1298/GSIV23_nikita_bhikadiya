@@ -14,7 +14,7 @@ import {
 export interface MovieListAPIResponse {
   dates: Object,
   page: Number,
-  results: Object,
+  results: Array<Object>,
   total_pages: Number
   total_results: Number
 }

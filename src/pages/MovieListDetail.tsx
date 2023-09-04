@@ -15,7 +15,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 type MovieParams = {
   id: string;
-};
+};  
 
 type TMovieList = {
   id: string;

@@ -5,15 +5,17 @@ interface Props {
 
 interface State {
   hasError: boolean;
-  error:string | any;
-  errorInfo:string | any;
+  error:Error;
+  errorInfo:ErrorInfo;
 }
 
 export class ErrorBoundary extends Component<Props,State> {
     public state: State = {
       hasError: false,
-      error:null,
-      errorInfo:null
+      error:{name:"",message:""},
+      errorInfo:{
+        componentStack: ""
+      }
     };
     
   

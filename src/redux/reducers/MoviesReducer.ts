@@ -1,6 +1,6 @@
 import { GET_MOVIE_CAST_DETAIL, GET_MOVIE_DETAIL, GET_MOVIE_LIST, SEARCH_MOVIE_LIST, SET_IS_SEARCH } from "../constants/action-types";
 import { MovieData } from "../Actions";
-import { ActionTypes } from "../action";
+import { ActionTypes, MovieListAPIResponse } from "../action";
 
 const initialState = {
   progress: false,
@@ -35,7 +35,7 @@ const movieReducer = (state: MovieData = initialState, action: ActionTypes) => {
     case GET_MOVIE_LIST.GET_MOVIE_LIST_INITLIZATION:
       return { ...state, isLoading: true };
     case GET_MOVIE_LIST.GET_MOVIE_LIST_SUCCESS:
-      const movies1: any = action.payload;
+      const movies1: MovieListAPIResponse = action.payload;
       return {
         ...state, movieList: [...state.movieList, ...movies1.results], total_pages: movies1.total_pages, isLoading: false
       };
@@ -46,7 +46,7 @@ const movieReducer = (state: MovieData = initialState, action: ActionTypes) => {
     case SEARCH_MOVIE_LIST.SEARCH_MOVIE_LIST_INITLIZATION:
       return { ...state, isLoading: true };
     case SEARCH_MOVIE_LIST.SEARCH_MOVIE_LIST_SUCCESS:
-      const movies: any = action.payload;
+      const movies: MovieListAPIResponse = action.payload;
       return {
         ...state, movieList: [...state.movieList, ...movies.results], total_pages: movies.total_pages, isLoading: false
       };
