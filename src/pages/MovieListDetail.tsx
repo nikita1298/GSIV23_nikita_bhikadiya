@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { dispatch } from "../redux";
 import { getMovieCastDetailInit, getMovieDetailInit } from "../redux/action";
 import Box from "@mui/material/Box";
@@ -39,18 +39,36 @@ export const MovieListDetail = () => {
   const isLoading: boolean =
     useSelector((state: Store) => state.movieReducer.isLoading) || false;
 
-  const movie_id: string =
-    useSelector((state: Store) => state.movieReducer.movieDetail.id) || "0";
+  // const movie_id: string =
+  //   useSelector((state: Store) => state.movieReducer.movieDetail.id) || "0";
 
   let { id = "0" } = useParams<MovieParams>();
 
+
+  const getDetail = useCallback(()=>{
+    dispatch(getMovieCastDetailInit(true, parseInt(id)));
+    dispatch(getMovieDetailInit(true, parseInt(id)));
+
+  },[id])
+  
   useEffect(() => {
-    if (parseInt(id) > 0 && parseInt(id) !== parseInt(movie_id)) {
-      dispatch(getMovieCastDetailInit(true, parseInt(id)));
-      dispatch(getMovieDetailInit(true, parseInt(id)));
-    }
+    getDetail();
+    // if (parseInt(id) > 0 && parseInt(id) !== parseInt(movie_id)) {
+    //   dispatch(getMovieCastDetailInit(true, parseInt(id)));
+    //   dispatch(getMovieDetailInit(true, parseInt(id)));
+    // }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+
+
+  // useEffect(() => {
+  //   if (parseInt(id) > 0 && parseInt(id) !== parseInt(movie_id)) {
+  //     dispatch(getMovieCastDetailInit(true, parseInt(id)));
+  //     dispatch(getMovieDetailInit(true, parseInt(id)));
+  //   }
+  // // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [id]);
 
   const getDirectorName = () => {
     let directorName = "-";
